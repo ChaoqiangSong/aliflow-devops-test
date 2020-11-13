@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${NAME}
+  name: ${NAME}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${NAME}
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: ${IMAGE}
+        imagePullPolicy: Always
+        name: ${NAME}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
